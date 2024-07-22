@@ -13,9 +13,14 @@ packer {
 
 # which ami to use as the base and where to save it
 source "amazon-ebs" "amazon-linux" {
+  
   region          = "ap-south-1"
   ami_name        = "ami-version-1.0.1-{{timestamp}}"
+
+ ## for AMI creation u need an ec2 instance , that instance is t2 micro
+
   instance_type   = "t2.micro"
+
   source_ami      = "ami-0aee0743bf2e81172"
   
   ssh_username    = "ec2-user"
