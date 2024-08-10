@@ -3,6 +3,7 @@ image: amazonlinux
 variables:
   AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID
   AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY
+  AWS_DEFAULT_REGION: "ap-south-1"  # Adjust this to your preferred region
 
 before_script:
   - yum install -y yum-utils shadow-utils unzip
@@ -11,11 +12,15 @@ before_script:
   - curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
   - unzip awscliv2.zip
   - ./aws/install
+  # Optionally configure AWS CLI explicitly (usually not needed if environment variables are set)
+  - aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
+  - aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
+  - aws configure set region $AWS_DEFAULT_REGION
 
 stages:
   - init
   - build
- 
+
 init:
   stage: init
   script:
@@ -27,6 +32,7 @@ init:
 build:
   stage: build
   script:
+    - packer init -upgrade .  # Ensures plugins are available in the build stage
     - packer build .
   dependencies:
     - init
