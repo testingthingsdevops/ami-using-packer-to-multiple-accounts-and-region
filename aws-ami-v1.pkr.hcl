@@ -24,9 +24,12 @@ source "amazon-ebs" "amazon-linux" {
   source_ami      = "ami-0aee0743bf2e81172"
   
   ssh_username    = "ec2-user"
-  #ami_users       = ["AWS Account ID"]
+  
+  ami_users       = ["412381772536","600627320748"]
+
   ami_regions     = [
                       "ap-south-1"
+                      "ap-southeast-1"
                     ]
 }
 
