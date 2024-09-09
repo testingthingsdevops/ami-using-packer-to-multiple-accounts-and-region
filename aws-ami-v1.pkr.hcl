@@ -28,7 +28,7 @@ source "amazon-ebs" "amazon-linux" {
   ami_users       = ["412381772536","600627320748"]
 
   ami_regions     = [
-                      "ap-south-1"
+                      "ap-south-1",
                       "ap-southeast-1"
                     ]
 }
