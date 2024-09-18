@@ -8,14 +8,14 @@ This repository demonstrates how to build Amazon Machine Images (AMIs) using Pac
 2. Navigate to **Variables**.
 3. Add your AWS credentials (Access Key ID and Secret Access Key) as environment variables.
 
-![Add AWS Credentials](./doc)
+![](./doc)
 
 ## Step 2: Configure Accounts and Regions
 
 1. Update your configuration files to include the AWS accounts and regions where you want to deploy the AMIs.
 2. Customize the AWS regions and accounts according to your requirements.
 
-![Configure Accounts and Regions](./doc2)
+![](./DOC2)
 
 ## Step 3: Run the CI/CD Pipeline
 
