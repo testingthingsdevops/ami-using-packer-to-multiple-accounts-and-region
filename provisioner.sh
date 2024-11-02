@@ -3,6 +3,10 @@
 # update package
 sudo yum -y update
 
+
+sudo yum install java-17-amazon-corretto-devel -y
+
+
 # install git
 sudo yum install git -y
 
