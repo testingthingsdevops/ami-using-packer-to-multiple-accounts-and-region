@@ -12,7 +12,7 @@ before_script:
   - curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
   - unzip awscliv2.zip
   - ./aws/install
-  # Optionally configure AWS CLI explicitly (usually not needed if environment variables are set)
+  #  Optionally configure AWS CLI explicitly (usually not needed if environment variables are set)
   - aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID_ADMIN
   - aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY_ADMIN
   - aws configure set region $AWS_DEFAULT_REGION
