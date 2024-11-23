@@ -58,6 +58,12 @@ When managing AWS credentials for a project in GitLab, maintaining their securit
 2. SetSet up a cron expression for your desired frequency (e.g., every month).
 3. Select the Lambda function as the target.
 
+For a more detailed explanation of this process and additional configurations, check out the [full blog post.](https://sompandey.hashnode.dev/a-complete-guide-to-automating-aws-key-rotation-and-gitlab-integration-using-lambda)
+
+
+
+
+
 
 
 
