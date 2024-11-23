@@ -31,8 +31,6 @@ When managing AWS credentials for a project in GitLab, maintaining their securit
 4. Save the access keys temporarily (these will be replaced by automation).
 5. Set up AWS credentials in GitLab variables (Group or Project level).
 
-![aws-variable] (https://cdn.hashnode.com/res/hashnode/image/upload/v1731308838567/2bc78a21-5c27-4067-9c68-e72151752b43.png?auto=compress,format&format=webp)
-
 ## Step 2: Create a GitLab API Token
 
 1. Go to GitLab Profile Settings > Access Tokens.
