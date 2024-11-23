@@ -1,0 +1,71 @@
+# Introduction
+
+When managing AWS credentials for a project in GitLab, maintaining their security is critical. Automating the rotation and update process ensures secure and seamless key management. This guide explains how to:
+
+1. Automatically create new AWS IAM keys.
+2. Update these keys in GitLab variables.
+3. Delete old keys.
+4. Schedule regular updates using AWS CloudWatch Events.
+
+# Features
+
+1. Automated rotation of AWS IAM access keys.
+2. Secure integration with GitLab environment variables.
+3. CloudWatch-based periodic updates.
+4. Reduced manual intervention and enhanced security.
+
+# Prerequisites
+
+1. AWS Account with permissions to use IAM, Lambda, and Secrets Manager.
+2. GitLab Account with a group or project requiring key updates.
+3. Python 3.9 or later for Lambda function runtime.
+
+# Setup Guide
+## Step 1: Set Up IAM User
+
+1. Log in to the AWS Management Console and go to IAM.
+2. Create a new IAM user with programmatic access or use an existing one.
+3. Attach the following policies:
+- IAMFullAccess or permissions like iam:CreateAccessKey, iam:DeleteAccessKey, etc.
+- SecretsManagerReadWrite for accessing secrets.
+4. Save the access keys temporarily (these will be replaced by automation).
+5. Set up AWS credentials in GitLab variables (Group or Project level).
+
+## Step 2: Create a GitLab API Token
+
+1. Go to GitLab Profile Settings > Access Tokens.
+2. Create a personal access token with API scope.
+3. Save the token in AWS Secrets Manager for Lambda to use.
+
+## Step 3: Store Secrets in AWS Secrets Manager
+
+1. Navigate to AWS Secrets Manager and create a new secret:
+- GITLAB_TOKEN: Your GitLab API token.
+- GITLAB_GROUP_ID: ID of the GitLab group.
+- AWS_IAM_USER: IAM username.
+2. Name the secret (e.g., gitlab-key-rotation-secrets).
+
+## Step 4: Set Up AWS Lambda
+
+1. Create a new Lambda function:
+2. Runtime: Python 3.9 or later.
+- Permissions: Attach a role with IAM and Secrets Manager permissions.
+- Add the provided Lambda function code.
+
+## Step 5: Automate with AWS CloudWatch Events
+
+1. Go to CloudWatch Events and create a new rule.
+2. SetSet up a cron expression for your desired frequency (e.g., every month).
+3. Select the Lambda function as the target.
+
+For a more detailed explanation of this process and additional configurations, check out the [full blog post.](https://sompandey.hashnode.dev/a-complete-guide-to-automating-aws-key-rotation-and-gitlab-integration-using-lambda)
+
+
+
+
+
+
+
+
+
+
