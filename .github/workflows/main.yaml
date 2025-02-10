@@ -15,7 +15,7 @@ jobs:
       AWS_DEFAULT_REGION: "ap-south-1"
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Install Dependencies
         run: |
@@ -41,7 +41,7 @@ jobs:
         run: packer init -upgrade .
 
       - name: Upload Packer Plugin Artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: packer-plugins
           path: ./.packer.d/plugins/
@@ -55,10 +55,10 @@ jobs:
       AWS_DEFAULT_REGION: "ap-south-1"
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Download Packer Plugins
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: packer-plugins
           path: ./.packer.d/plugins/
