@@ -45,6 +45,7 @@ jobs:
         with:
           name: packer-plugins
           path: ./.packer.d/plugins/
+          retention-days: 7  # Keep artifacts for 7 days
 
   build:
     runs-on: ubuntu-latest
