@@ -62,7 +62,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: packer-plugins
-          path: /home/runner/.config/packer/plugins/
+          path: .packer.d/plugins/
 
       - name: Initialize Packer (Again)
         run: packer init -upgrade .
