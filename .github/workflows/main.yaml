@@ -36,9 +36,15 @@ jobs:
           aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
           aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
           aws configure set region $AWS_DEFAULT_REGION
+          
+      - name: Create artifact directory
+        run: mkdir -p .packer.d/plugins/    
 
       - name: Initialize Packer
         run: packer init -upgrade .
+
+      - name: List Packer Plugins
+        run: ls -la .packer.d/plugins/ || echo "No plugins found"
 
       - name: Upload Packer Plugin Artifacts
         uses: actions/upload-artifact@v4
