@@ -1,0 +1,70 @@
+name: Packer Build Workflow
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  init:
+    runs-on: ubuntu-latest
+    env:
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID_ADMIN }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY_ADMIN }}
+      AWS_DEFAULT_REGION: "ap-south-1"
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Install Dependencies
+        run: |
+          sudo apt update
+          sudo apt install -y unzip
+          curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
+          sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
+          sudo apt update && sudo apt install -y packer terraform
+
+      - name: Install AWS CLI
+        run: |
+          curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+          unzip awscliv2.zip
+          sudo ./aws/install
+
+      - name: Configure AWS CLI
+        run: |
+          aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
+          aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
+          aws configure set region $AWS_DEFAULT_REGION
+
+      - name: Initialize Packer
+        run: packer init -upgrade .
+
+      - name: Upload Packer Plugin Artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: packer-plugins
+          path: ./.packer.d/plugins/
+
+  build:
+    runs-on: ubuntu-latest
+    needs: init
+    env:
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID_ADMIN }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY_ADMIN }}
+      AWS_DEFAULT_REGION: "ap-south-1"
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Download Packer Plugins
+        uses: actions/download-artifact@v3
+        with:
+          name: packer-plugins
+          path: ./.packer.d/plugins/
+
+      - name: Initialize Packer (Again)
+        run: packer init -upgrade .
+
+      - name: Build Packer Templates
+        run: packer build .
+
