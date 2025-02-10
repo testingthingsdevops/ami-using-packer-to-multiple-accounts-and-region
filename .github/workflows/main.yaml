@@ -40,6 +40,9 @@ jobs:
       - name: Create artifact directory
         run: mkdir -p .packer.d/plugins/    
 
+      - name: Add Placeholder (Fix Empty Directory)
+        run: touch .packer.d/plugins/.keep
+
       - name: Initialize Packer
         run: packer init -upgrade .
 
