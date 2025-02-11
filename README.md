@@ -8,14 +8,14 @@ This repository demonstrates how to build Amazon Machine Images (AMIs) using Pac
 3. Click on **New repository secret** and add the following secrets: ( AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY_ID)
 4. Ensure these secrets are available in your GitHub Actions workflow.
 
-![Add AWS Credentials](./doc.png)
+![Add AWS Credentials](https://github.com/Sompandey01/images/blob/53dbe2f0f62005d74ee09a41a2bfbbaf4c48f2d8/Screenshot%20(244).png)
 
 ## Step 2: Configure Accounts and Regions
 
 1. Update your configuration files to include the AWS accounts and regions where you want to deploy the AMIs.
 2. Customize the AWS regions and accounts according to your requirements.
 
-![Configure Accounts and Regions](./DOC2.png)
+![Configure Accounts and Regions](https://github.com/Sompandey01/images/blob/53dbe2f0f62005d74ee09a41a2bfbbaf4c48f2d8/Screenshot%20(246).PNG)
 
 ## Step 3: Run the GitHub Actions Workflow
 
@@ -23,7 +23,7 @@ This repository demonstrates how to build Amazon Machine Images (AMIs) using Pac
 2. The workflow will build the AMIs using Packer and distribute them across the specified regions and accounts.
 3. Note that the workflow may take up to 15 minutes to complete the distribution process.
 
-![Run GitHub Workflow](./doc3)
+![Run GitHub Workflow](https://github.com/Sompandey01/images/blob/53dbe2f0f62005d74ee09a41a2bfbbaf4c48f2d8/Screenshot%20(245).png)
 
 ## Additional Information
 
