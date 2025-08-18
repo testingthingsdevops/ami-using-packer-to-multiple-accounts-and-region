@@ -21,15 +21,14 @@ source "amazon-ebs" "amazon-linux" {
 
   instance_type   = "t2.micro"
 
-  source_ami      = "ami-0aee0743bf2e81172"
+  source_ami      = "ami-020cba7c55df1f615"
   
   ssh_username    = "ec2-user"
   
-  ami_users       =  ["746669221855","588738612311"]
+  ami_users       =  ["414694853813"]
 
   ami_regions     = [
-                      "ap-south-1",
-                      "ap-southeast-1"
+                      "ap-south-1"
                     ]
 }
 
